@@ -80,7 +80,6 @@ $y=4e^{2x}$
 $\frac{d}{dx}x^n = nx^{n-1}$
 x HAS to be the base, this rule won't work for $2^n$
 
-
 ## Integration
 
 ## Multivariable Calculus
