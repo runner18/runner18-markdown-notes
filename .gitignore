@@ -1,0 +1,17 @@
+# MkDocs generated site
+site/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment (if any)
+venv/
+env/
+
+# vs code stuff
+*.code-workspace
+
+#obsidian stuff
+.obsidian/
+.trash/
