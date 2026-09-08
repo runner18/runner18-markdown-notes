@@ -103,8 +103,6 @@ If your binding involves a DependencyProperty of a user control, is the binding 
 If you are binding with primatives (string, bool, int, etc.), remember they copy by VALUE not reference, meaning their bindings will NOT copy if you do booleanA = booleanB
 
 
-```
-
 ```CS
 var person = new Person { Name = "Alice" };
 localValue.EditValue = person;
