@@ -12,6 +12,9 @@ $\dfrac{e^a}{e^b}=e^{a-b}$
 ## When Do you Multiply Exponents?
 $(x^a)^b = x^{a*b}$
 
+Example:
+$(3x^2)^3$
+$27x^6$
 ### Difference of Squares
 $x^2-9 = (x+3)(x-3)$
 
@@ -70,7 +73,22 @@ $y=e^{2x}*e^{ln(4)}$
 $y=e^{2x}*4$
 $y=4e^{2x}$
 
+**Log Product**
+$ln(x)+ln(2)=ln(2x)$
+
 ## Trigonometry
+If you have a right angled triangle whose long side is a length of one
+That triangle can represent a vector of length one poking out from (0,0)
+
+From here you can use trigonometry to translate between (x,y) and (angle, length) 
+
+![[Pasted image 20260908130649.png|200]]
+![[Pasted image 20260908130845.png|253]]
+$a^2+b^2=c^2$
+$sin^2(θ)+cos^2(θ)=1$
+$sin(θ)=y$ if the hyp is only 1, so
+$hyp*sin(θ)=y$
+$hyp*cos(θ) = x$
 
 
 ## Complex Numbers
@@ -79,6 +97,23 @@ $y=4e^{2x}$
 ### Power Rule
 $\frac{d}{dx}x^n = nx^{n-1}$
 x HAS to be the base, this rule won't work for $2^n$
+
+### Constant Rule
+$\dfrac{d}{dx}c=0$
+
+$f(x)= 17$
+$f'(x)=0$
+
+$f(x)=x^3+42$
+$f'(x)=3x^2$
+
+### Sum/Difference Rule
+When adding or subtracting, differentiate each term independently:
+$\dfrac{d}{dx}[f(x)+g(x)]=f'(x)+g'(x)$
+
+Example:
+$f(x)=x^4+3x^2-7x+12$
+$f'(x)=4x^3+6x-7$
 
 ## Integration
 
