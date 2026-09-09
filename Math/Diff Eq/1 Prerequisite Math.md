@@ -115,6 +115,43 @@ Example:
 $f(x)=x^4+3x^2-7x+12$
 $f'(x)=4x^3+6x-7$
 
+### Product Rule
+$(fg)'=f'g+fg'$
+
+### Quotient Rule
+$\dfrac{d}{dx}(\dfrac{f}{g})=\dfrac{f'g-fg'}{g^2}$
+
+### Chain Rule
+$f(x)=(3x^2+1)^5$
+
+Power rule doesn't work on its own because the "base" isn't x, it's another function.
+
+$\dfrac{d}{dx}=f'(g(x)) * g'(x)$
+
+Example:
+$(3x^2+1)^5$
+$(u)^5$
+$5(u)^4$
+$5(u)^4 * \dfrac{d}{dx}(u)$
+$5(3x^2+1)^4 * \dfrac{d}{dx}(3x^2+1)$
+$5(3x^2+1)^4 * 6x$
+$30x * 5(3x^2+1)^4$
+
+Don't expand this function lol
+**"Expanding it would be actively stupid in most calculus situations"**
+
+### e and Exponential Functions
+$\dfrac{d}{dx}e^x=e^x$
+
+**e Chain Rule**
+$\dfrac{d}{dx}(e^u)=e^u * \dfrac{du}{dx}$
+
+$\dfrac{d}{dx}(a^x) = a^x * ln(a)$
+
+If "a" is "e":
+$\dfrac{d}{dx}(e^x)=e^x*ln(e)=e^x*1=e^x$
+$ln(e)=1$
+
 ## Integration
 
 ## Multivariable Calculus
