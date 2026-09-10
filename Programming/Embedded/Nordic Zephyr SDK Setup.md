@@ -126,6 +126,7 @@ Pretty comprehensive, points to a bunch of stuff. Includes the following:
 ### CMakePresets.json
 You can save Build Configurations as Presets.
 These Presets will show up on the VS Code extension's UI.
+CMakePresets.json contains a list of the presets.
 ### Configuration Files (.conf)
 You can create multiple configuration files.
 Configuration files contain core zephyr settings you can change.
@@ -137,34 +138,24 @@ Settings may include:'
 - Enable external clock crystal
 - Make UART interrupt driven
 - Set logging level (warning, debug, etc.)
+
+The .conf file listed last in a build configuration gets top priority. Will override the others.
+
+### KConfig
+Declares settings and their types
+
 ### Boards, Board target
 You can create "boards", which tells Nordic SDK what the hardware looks like.
-The selling point here is that you can swap hardware seamlessly. 
+The selling point here is that you could in theory run the same firmware on different hardware. 
 
 Made up of multiple parts:
-- board.cmake
-- board.yml
-- \_defconfig file
-- DeviceTree file (.dts)
-#### board.cmake
-Sets up flashing and debugging:
-- What programmer tool should I use?
-- What should I tell the programmer tool?
-
-#### board.yml
-Contains core name info, and what processors may in included I think.
-
-#### \_defconfig file
-Contains configuration info for the board. Is SPI enabled? Is I2C enabled? Is analog-to-digital conversion enabled?
-
-#### DeviceTree file (.dts)
-This connects the code to the hardware:
-- Which pins do I use for SPI communications?
-- Which pin is used for this digital input/output?
-- Which analog pin is used for this analog input?
+- board.cmake - set up flashing and debugging
+- board.yml - contains core name info
+- \_defconfig file - core config info for the board: Is SPI enabled? etc., sets values for Kconfig settings
+- DeviceTree file (.dts) - connects the code to the hardware: which pins do I use for SPI? etc.
+- Kconfig - declares settings and their types
  
-The details of settings this up deserve its own section, really. 
-Each "Device" type (SPI, I2C, ADC, Digital I/O) has its own quirks.
+The DeviceTree file deserves its own section, honestly.
 ### CMakeLists.txt
 CMake is a build planner for programming languages.
 1. CMake plans
@@ -172,3 +163,15 @@ CMake is a build planner for programming languages.
 3. The linker joins the pieces
 
 CMakeLists.txt lets you decide which files will get compiled.
+
+### west . command
+Runs the whole chain: finds the board, merges the settings, calls CMake, calls the compiler.
+
+## DeviceTree 
+The DeviceTree is an essential part of a "Board".
+
+The DeviceTree connects the code to the hardware: 
+- which pins do I use for this Digital Out? 
+- What frequency are we running SPI at and which pins? etc.
+
+Each piece of hardware (SPI, I2C, I/O, etc.) is represented as a "Node".
