@@ -138,14 +138,18 @@ Settings may include:'
 - Make UART interrupt driven
 - Set logging level (warning, debug, etc.)
 ### Boards, Board target
-You can create "boards". 
-A "board" tells Nordic SDK, what features (aka "devices") the hardware has.
-In theory this would let you run the same code on different boards seamlessly.
+You can create "boards", which tells Nordic SDK what the hardware looks like.
+The selling point here is that you can swap hardware seamlessly. 
 
-A board is made up of multiple files.
-
+Made up of multiple parts:
+- board.cmake
+- board.yml
+- \_defconfig file
+- DeviceTree file (.dts)
 #### board.cmake
-Tells Zephyr...something about how to compile the board.
+Sets up flashing and debugging:
+- What programmer tool should I use?
+- What should I tell the programmer tool?
 
 #### board.yml
 Contains core name info, and what processors may in included I think.
@@ -159,9 +163,12 @@ This connects the code to the hardware:
 - Which pin is used for this digital input/output?
 - Which analog pin is used for this analog input?
  
-The details of settings this up deserve its own section, really. Each "Device" type (SPI, I2C, ADC, Digital I/O) has its own quirks.
+The details of settings this up deserve its own section, really. 
+Each "Device" type (SPI, I2C, ADC, Digital I/O) has its own quirks.
 ### CMakeLists.txt
-This has to do with the programming language "c".
-You list all the files you the linker to include in the final, compiled firmware.
-You can also add conditional statements so, depending on the setting, the linker will swap out one file for another.
-This lets you compile different firmware with different code more easily.
+CMake is a build planner for programming languages.
+1. CMake plans
+2. The compiler turns each .c into a piece
+3. The linker joins the pieces
+
+CMakeLists.txt lets you decide which files will get compiled.
