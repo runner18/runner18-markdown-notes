@@ -32,7 +32,7 @@
 - Create a build configuration
 	- Tells the compiler which board files to include in your build
 	- This making the output compatible with your board
-	- ![319](Pasted%20image%2020260910152434.png)
+	- ![](Pasted%20image%2020260910154529.png)
 	- Under Add Build Configuration > Board
 		- Select you development kit
 		- The configuration for your board is stored in a **prj.conf** file (which is generated based on your board selection)
@@ -41,7 +41,7 @@
 		- Can leave the Build directory name as "Build"
 		- Can enable debugging with "Enable debug options"
 	- Here's how you build
-		- ![316](Pasted%20image%2020260910152533.png)
+		- ![](Pasted%20image%2020260910154532.png)
 	- Can also save the build configuration
 
 ## What Does Each Part Do?

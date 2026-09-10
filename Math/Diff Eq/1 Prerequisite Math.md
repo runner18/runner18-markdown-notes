@@ -83,9 +83,9 @@ That triangle can represent a vector of length one poking out from (0,0)
 From here you can use trigonometry to translate between (x,y) and (angle, length) 
 
 
-![232](Pasted%20image%2020260910152350.png)
+![](Pasted%20image%2020260910154510.png)
 
-![332](Pasted%20image%2020260910152408.png)
+
 $a^2+b^2=c^2$
 $sin^2(θ)+cos^2(θ)=1$
 $sin(θ)=y$ if the hyp is only 1, so
