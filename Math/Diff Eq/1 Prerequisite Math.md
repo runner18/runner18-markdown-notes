@@ -150,7 +150,9 @@ $\dfrac{d}{dx}(a^x) = a^x * ln(a)$
 
 If "a" is "e":
 $\dfrac{d}{dx}(e^x)=e^x*ln(e)=e^x*1=e^x$
-$ln(e)=1$
+
+$\dfrac{d}{dx}ln(x)=\dfrac{1}{x}$
+
 
 ## Integration
 
