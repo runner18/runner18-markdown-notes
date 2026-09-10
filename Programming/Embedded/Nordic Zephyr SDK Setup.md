@@ -96,3 +96,72 @@ Project config files:
 - app_debug.conf
 - prj.conf
 
+### How to find Zephyr header files
+This:
+```
+#include <zephyr/device.h> 
+```
+Is inaccurate to where device.h ACTUALLY is:
+
+![[Pasted image 20260910134212.png|108]] ![[Pasted image 20260910134224.png|265]]
+
+## What Does Each Part Do?
+There are several files involved with Nordic Zephyr SDK, and each plays a part with connecting the code to the hardware.
+
+### Build Configuration
+Tells Nordic SDK how to build the firmware for your controller and hardware. 
+Pretty comprehensive, points to a bunch of stuff. Includes the following:
+- SDK version
+- Toolchain version
+- Board target
+- Base configuration files
+- Extra Kconfig fragments
+- Base Devicetree overlays
+- Extra Devicetree overlays
+- Snippets
+- Optimization level
+- Extra CMake arguments
+- Use sysbuild? (yes or no)
+
+### CMakePresets.json
+You can save Build Configurations as Presets.
+These Presets will show up on the VS Code extension's UI.
+### Configuration Files (.conf)
+You can create multiple configuration files.
+Configuration files contain core zephyr settings you can change.
+You may also create your own, custom settings.
+Settings may include:'
+- Stack size
+- Enable temperature sensor
+- Enable CRC checking
+- Enable external clock crystal
+- Make UART interrupt driven
+- Set logging level (warning, debug, etc.)
+### Boards, Board target
+You can create "boards". 
+A "board" tells Nordic SDK, what features (aka "devices") the hardware has.
+In theory this would let you run the same code on different boards seamlessly.
+
+A board is made up of multiple files.
+
+#### board.cmake
+Tells Zephyr...something about how to compile the board.
+
+#### board.yml
+Contains core name info, and what processors may in included I think.
+
+#### \_defconfig file
+Contains configuration info for the board. Is SPI enabled? Is I2C enabled? Is analog-to-digital conversion enabled?
+
+#### DeviceTree file (.dts)
+This connects the code to the hardware:
+- Which pins do I use for SPI communications?
+- Which pin is used for this digital input/output?
+- Which analog pin is used for this analog input?
+ 
+The details of settings this up deserve its own section, really. Each "Device" type (SPI, I2C, ADC, Digital I/O) has its own quirks.
+### CMakeLists.txt
+This has to do with the programming language "c".
+You list all the files you the linker to include in the final, compiled firmware.
+You can also add conditional statements so, depending on the setting, the linker will swap out one file for another.
+This lets you compile different firmware with different code more easily.
