@@ -32,7 +32,7 @@
 - Create a build configuration
 	- Tells the compiler which board files to include in your build
 	- This making the output compatible with your board
-	- ![[Pasted image 20260910132453.png|373]]
+	- ![[Pasted image 20260910132453.png|260]]
 	- Under Add Build Configuration > Board
 		- Select you development kit
 		- The configuration for your board is stored in a **prj.conf** file (which is generated based on your board selection)
@@ -41,11 +41,58 @@
 		- Can leave the Build directory name as "Build"
 		- Can enable debugging with "Enable debug options"
 	- Here's how you build
-		- ![[Pasted image 20260910132813.png|381]]
+		- ![[Pasted image 20260910132813.png|235]]
 	- Can also save the build configuration
 
-### Header Files
 ### CMakeLists.txt
-![[Pasted image 20260910132900.png|505]]
+![[Pasted image 20260910132900.png|313]]
 
 Place all your files you want to include under "target_sources".
+
+## Configuring Devices
+### Troubleshooting: \[property\] undeclared here
+In the Zephyr device tree, you will have devices in the dts file:
+![[Pasted image 20260910133120.png|198]]
+The device will need to be compatible with a BINDING. 
+This binding file includes all the properties this device needs to have:
+![[Pasted image 20260910133153.png|163]]
+
+![[Pasted image 20260910133209.png|460]]
+
+When building, Zephyr will take the properties from the DeviceTree/Binding and turn them into macros:
+![[Pasted image 20260910133247.png|335]]
+
+However, in this example, notice that the spi-max-frequency macro is nowhere to be found.
+This is because Zephyr is **stupid** and won't generate it.
+
+Luckily, you can create your own custom yaml binding file.
+
+Okay I fixed the issue, it's because there needs to be a vendor before spi-device
+![[Pasted image 20260910133357.png|254]]
+
+Yes, there's vs code errors, but it will *actually* build. [Discovered from this link]([https://devzone.nordicsemi.com/f/nordic-q-a/108613/yet-another-zephyr-devicetree-problem-this-time-with-spi-spi-max-frequency-amongst-others](https://devzone.nordicsemi.com/f/nordic-q-a/108613/yet-another-zephyr-devicetree-problem-this-time-with-spi-spi-max-frequency-amongst-others))
+
+### Creating Your Own Bindings
+Each device has its own custom binding file:
+![[Pasted image 20260910133609.png|419]]
+The issue is that nrf/zephyr hasn't created a binding file for every device that has existed ever.
+Which means that if your device isn't on the list, you'll need to create your own binding file.
+
+You can look at existing binding files for examples, then just alter those.
+
+(Future Alex follow up questions)
+- What *is* a device exactly? Is it a specific function on a controller? What properties of the device is the device file binding to? Where exactly am I supposed to find these example, existing binding files?
+![[Pasted image 20260910133856.png|340]] ![[Pasted image 20260910133909.png|211]]
+
+And here is that device being used in a DeviceTree file:
+![[Pasted image 20260910133937.png|342]]
+
+### Config Files
+
+**default vs board**
+There's a config file for the project, then there's a config file for the board:
+
+Project config files:
+- app_debug.conf
+- prj.conf
+
