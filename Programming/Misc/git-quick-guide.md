@@ -22,6 +22,13 @@ git push -u origin main
 
 Create .gitignore file if there is stuff in your repo that you do NOT want uploaded to GitHub.
 
+## Say who you are
+Sometimes git will complain that you haven't identified yourself. Just run:
+```
+git config user.name "someone"
+git config user.email "someone@someplace.com"
+```
+
 ## Routine push to GitHub
 ```
 git add .
