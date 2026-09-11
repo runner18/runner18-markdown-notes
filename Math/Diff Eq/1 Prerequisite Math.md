@@ -157,6 +157,27 @@ $\dfrac{d}{dx}ln(x)=\dfrac{1}{x}$
 
 
 ## Integration
+A lot of this is just the same rules as deriving but working backwards.
+
+Like the derivative of 7x is 7, and the integral of 7 is 7x + C wooooah
+
+Same idea for the sum/difference
+
+### Power rule
+
+$\int x^{n}dx=\dfrac{1}{n+1}*x^{n+1}+C,n\neq-1$
+
+Example:
+$\int x^3dx=\frac{1}{4}*x^4+C$
+
+### Power Rule Exception!!!
+$\int\dfrac{1}{x}dx=\ln|x|+C$
+Power rule doesn't work for $x^{-1}$
+
+### Natural Exponential
+$\int e^{ax}dc=\frac1a e^{ax}+C$
+
+
 
 ## Multivariable Calculus
 
