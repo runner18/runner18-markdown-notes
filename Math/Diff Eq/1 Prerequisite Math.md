@@ -155,6 +155,9 @@ $\dfrac{d}{dx}(e^x)=e^x*ln(e)=e^x*1=e^x$
 
 $\dfrac{d}{dx}ln(x)=\dfrac{1}{x}$
 
+### Trig
+![347](Pasted%20image%2020260911145342.png)
+
 
 ## Integration
 A lot of this is just the same rules as deriving but working backwards.
@@ -177,8 +180,35 @@ Power rule doesn't work for $x^{-1}$
 ### Natural Exponential
 $\int e^{ax}dc=\frac1a e^{ax}+C$
 
+### Other Bases
+$\int a^x dx=\dfrac{a^x}{\ln a}+C$
+$\qquad(a>0,\ a\neq1)$
 
+### Trig
+![199](Pasted%20image%2020260911145441.png)
 
+### u-substitution
+This function must become entirely u-based!
+
+Example:
+
+$\int2x(x^2+1)^5dx$
+				$u=x^2+1$
+$\int2x(u)^5dx$
+				$\dfrac{du}{dx}=2x$
+				$du=2x*dx$
+				$dx=\dfrac{du}{2x}$
+$\int2x(u)^5\dfrac{du}{2x}$
+$\int(u)^5du$
+$\frac{1}{6}(u)^6+C$
+$\frac{1}{6}(x^2+1)^6+C$
+
+Basically
+1. Replace the inner function with u
+2. Derive u=inner_function to get du/dx=derived_inner_function
+3. Now you can make equation all u-based by swapping dx for du!
+4. Integrate more simple u-based equation
+5. Finally, subtitute u back in with inner_function
 ## Multivariable Calculus
 
 ## Linear Algebra
