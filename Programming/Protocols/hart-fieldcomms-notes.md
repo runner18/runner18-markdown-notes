@@ -32,9 +32,11 @@ Communication sequence:
 Important points:
 - One message at a time! No one can talk over each other!
 - Slaves only over talk in response to a Master Command
-- Master Command and Slave response both must include the Slave's address
+- Master Command and Slave response **both must include the Slave's address**
+	- When Master includes Slave's address in its command, its so only one slave responds
+	- When Slave includes Slave's own address in its response, its so Master knows which slave is responding
 
-### Delimiter
+### Start Delimiter
 | Bit: | 7                                                    | 6, 5                 | 4, 3                | 2, 1, 0                                                                               |
 | ---- | ---------------------------------------------------- | -------------------- | ------------------- | ------------------------------------------------------------------------------------- |
 |      | Address Type                                         | # of Expansion Bytes | Physical-layer type | Frame type                                                                            |
@@ -62,18 +64,11 @@ Quote from HART Clarifies:
 
 ## Ways to Connect Master to Slave Device
 
-In modern HART, Master connects to Slave by getting its "long address" and using that.
+In modern HART, Master connects to Slave by getting its long address/unique ID.
 
-| Command                                              | Long or Short Address?                                                                                                                             | How is Slave identified? |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| 0 - Read Unique Identifier                           | Short                                                                                                                                              | Via Short address        |
-| 11 - Read Unique Identifier Associated With Tag      | Long - all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID. Slave is identifier via tag instead.      | Via HART Tag             |
-| 21 - Read Unique Identifier Associated With Long Tag | Long - all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID. Slave is identifier via long tag instead. | Via HART Long Tag        |
+| Command                                              | Long or Short Address?                                                                                                                                       | How is Slave identified? | What does Slave Return                                     |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ | ---------------------------------------------------------- |
+| 0 - Read Unique Identifier                           | Short                                                                                                                                                        | Via Short address        | Long address/unique ID                                     |
+| 11 - Read Unique Identifier Associated With Tag      | Long/unique - but all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via tag instead. | Via HART Tag             | Long address/unique ID - actually a number, not all zeroes |
+| 21 - Read Unique Identifier Associated With Long Tag | Long - all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via long tag instead.       | Via HART Long Tag        | Long address/unique ID - actually a number, not all zeroes |
 
-### Command 0 w/ Short Address
-- Master Sends Command 0
-- Command 0 contains "short" address, probably just 0
-- Slave receives Command 0
-- Slave responds with "full" address
-
-### Command 11 w/ Broadcast Address
