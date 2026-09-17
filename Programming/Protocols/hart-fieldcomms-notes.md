@@ -61,16 +61,23 @@ HART Commands fall under the following categories:
 Quote from HART Clarifies:
 	"Previous, obsolete revisions of the protocol utilized short frame addresses. In order to maintain backwards compatibility, only Universal Command 0 now supports short frame addressing."
 
+From HART-Universal-Command:
+	"Command 0 is the only command that may respond to a short frame address."
 ## Ways to Connect Master to Slave Device
 
 In modern HART, Master connects to Slave by getting its long address/unique ID.
 
-| Command                                              | Long or Short Address?                                                                                                                                       | How is Slave identified? | What does Slave Return                                     |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ | ---------------------------------------------------------- |
-| 0 - Read Unique Identifier                           | Short                                                                                                                                                        | Via Short address        | Long address/unique ID                                     |
-| 11 - Read Unique Identifier Associated With Tag      | Long/unique - but all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via tag instead. | Via HART Tag             | Long address/unique ID - actually a number, not all zeroes |
-| 21 - Read Unique Identifier Associated With Long Tag | Long - all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via long tag instead.       | Via HART Long Tag        | Long address/unique ID - actually a number, not all zeroes |
+| Command                                              | Long or Short Address?                                                                                                                                                               | How is Slave identified? | What does Slave Return                                     |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ | ---------------------------------------------------------- |
+| 0 - Read Unique Identifier                           | Short                                                                                                                                                                                | Via Short address        | Long address/unique ID                                     |
+| 11 - Read Unique Identifier Associated With Tag      | Long/unique - but all the bits are zero (aka Broadcast Address)<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via tag instead. | Via HART Tag             | Long address/unique ID - actually a number, not all zeroes |
+| 21 - Read Unique Identifier Associated With Long Tag | Long - but all the bits are zero (aka Broadcast Address)<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via long tag instead.   | Via HART Long Tag        | Long address/unique ID - actually a number, not all zeroes |
 
 Its like how you only use Bing to search for Google.com. 
 Like Google, long-form address is the go-to way to address Slave devices.
 Any other way (short-form address, HART tag) is just a way to get to the long-form address.
+
+### Broadcast Address
+Broadcast address is a long/unique address but the bits are zero. 
+
+Master should ONLY use Broadcast Address if message has another way to specify one single slave.
