@@ -57,7 +57,6 @@ HART Commands fall under the following categories:
 | ----------------------------- | -------------------------------------------- | ----------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | Short address/Polling Address | Single number, 0-63. <br><br>Typically 0.    | Short-frame | 4 bits     | Used for everything, long address didn't exist yet.<br><br>Short address of 0 is used when there is one slave only. 1-63 when there are multiple slaves (multi-drop mode) | Short address ONLY used inside Command 0, where Command 0 gets the Long Address of the slave. |
 | Long Address/Unique ID        | Longer address, unique to that slave device. | Long-frame  | 38 bits    | Not used at all, wasn't invented yet                                                                                                                                      | Used by default                                                                               |
-|                               |                                              |             |            |                                                                                                                                                                           |                                                                                               |
 
 Quote from HART Clarifies:
 	"Previous, obsolete revisions of the protocol utilized short frame addresses. In order to maintain backwards compatibility, only Universal Command 0 now supports short frame addressing."
@@ -72,3 +71,6 @@ In modern HART, Master connects to Slave by getting its long address/unique ID.
 | 11 - Read Unique Identifier Associated With Tag      | Long/unique - but all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via tag instead. | Via HART Tag             | Long address/unique ID - actually a number, not all zeroes |
 | 21 - Read Unique Identifier Associated With Long Tag | Long - all the bits are zero<br><br>Bits are all zero because we do not know the long address/unique ID yet. Slave is identified via long tag instead.       | Via HART Long Tag        | Long address/unique ID - actually a number, not all zeroes |
 
+Its like how you only use Bing to search for Google.com. 
+Like Google, long-form address is the go-to way to address Slave devices.
+Any other way (short-form address, HART tag) is just a way to get to the long-form address.
