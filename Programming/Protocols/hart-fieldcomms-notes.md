@@ -1,4 +1,5 @@
-
+https://www.bostontech.net/wp-content/uploads/2020/10/Practical-Data-Communications-and-Networking-10.HART-protocol.pdf
+^helpful resource
 ## What is HART?
 HART is a way for devices to talk to each other. All devices sit on a single loop. Two signals:
 1. 4-20mA analog signal
@@ -39,12 +40,6 @@ Important points:
 | ---- | ---------------------------------------------------- | -------------------- | ------------------- | ------------------------------------------------------------------------------------- |
 |      | Address Type                                         | # of Expansion Bytes | Physical-layer type | Frame type                                                                            |
 |      | 0 = short/polling address<br>1 = long/unique address | Usually all zeros    | Usually all zeroes  | 010 = STX/Start of Text<br>110 = ACK/Acknowledge<br>001 = BACK/Burst-mode acknowledge |
-Address Type notes:
-- Older versions of HART only used the "short"/polling address/short frame
-- Modern HART introduced the "long" address/long frame
-
-Quote from HART that clarifies:
-"Previous, obsolete revisions of the protocol utilized short frame addresses. In order to maintain backwards compatibility, only Universal Command 0 now supports short frame addressing."
 
 ### Command
 Every HART message falls under a "Command"
@@ -59,11 +54,36 @@ HART Commands fall under the following categories:
 2. Common Practice Commands (34-110) - your HART devices SHOULD be able to handle these
 3. Device Specific Commands (128+) - you, or anyone else making a device using HART, can define these if you want
 
+## Short vs Long Address, Command 0, and more
 
-## How to Connect to Slave Device
-The Master connects to a Slave by getting the Slave's "full address".
+| Slave's Address Type | Format                                       | Frame Type  | Bit Length | Usage in Older Versions of HART                                                                                                                    | Usage in Modern HART                                                                          |
+| -------------------- | -------------------------------------------- | ----------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Short address        | Single number, 0-63. Typically 0.            | Short-frame | 4 bits     | Used for everything, there was not long address yet.<br><br>Short address 0 used when there is one slave only. 1-63 when there are multiple slaves | Short address ONLY used inside Command 0, where Command 0 gets the Long Address of the slave. |
+| Long Address         | Longer address, unique to that slave device. | Long-frame  | 38 bits    | Not used at all, wasn't invented yet                                                                                                               | Used by default                                                                               |
+|                      |                                              |             |            |                                                                                                                                                    |                                                                                               |
 
-There are multiple ways the Master can get the Slave's "full address":
+### Old vs New HART
+Older versions of HART only used the short/polling address, part of a "short-frame" message.
+Modern HART introduced the long/unique address, part of a "long-frame" message.
+
+Short vs Long address
+	The Slave's "short" address is a single number, 0-63. Typically 0.
+	The Slave's "long" address is a unique id that no other slave will have.
+
+Modern HART uses "long" address, not "short" address
+- Modern HART introduced the "long" address
+- A Modern HART Master only uses the "short" address to fetch the "long/unique" address via Command 0.
+
+Quote from HART Clarifies:
+	"Previous, obsolete revisions of the protocol utilized short frame addresses. In order to maintain backwards compatibility, only Universal Command 0 now supports short frame addressing."
+
+### Don't Confuse Broadcast Address 0 with Command 0
+Broadcast Address is a LONG "address" that means "I don't know what your full address is, but respond if "
 
 ### Command 0 w/ Short Address
-Command 0 can get the Slave's "full address" by sending Command 0 and using a "Short Address"
+- Master Sends Command 0
+- Command 0 contains "short" address, probably just 0
+- Slave receives Command 0
+- Slave responds with "full" address
+
+### Command 11 w/ Broadcast Address
