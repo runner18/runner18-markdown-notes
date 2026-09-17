@@ -51,12 +51,13 @@ HART Commands fall under the following categories:
 2. Common Practice Commands (34-110) - your HART devices SHOULD be able to handle these
 3. Device Specific Commands (128+) - you, or anyone else making a device using HART, can define these if you want
 
-## Short vs Long Addresses
+## Short vs Long vs Broadcast Addresses
 
-| Slave's Address Type          | Format                                       | Frame Type  | Bit Length | Usage in Older Versions of HART                                                                                                                                           | Usage in Modern HART                                                                          |
-| ----------------------------- | -------------------------------------------- | ----------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Short address/Polling Address | Single number, 0-63. <br><br>Typically 0.    | Short-frame | 4 bits     | Used for everything, long address didn't exist yet.<br><br>Short address of 0 is used when there is one slave only. 1-63 when there are multiple slaves (multi-drop mode) | Short address ONLY used inside Command 0, where Command 0 gets the Long Address of the slave. |
-| Long Address/Unique ID        | Longer address, unique to that slave device. | Long-frame  | 38 bits    | Not used at all, wasn't invented yet                                                                                                                                      | Used by default                                                                               |
+| Slave's Address Type          | Format                                                          | Frame Type  | Bit Length | Usage in Older Versions of HART                                                                                                                                           | Usage in Modern HART                                                                              |
+| ----------------------------- | --------------------------------------------------------------- | ----------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Short address/Polling Address | Single number, 0-63. <br><br>Typically 0.                       | Short-frame | 4 bits     | Used for everything, long address didn't exist yet.<br><br>Short address of 0 is used when there is one slave only. 1-63 when there are multiple slaves (multi-drop mode) | Short address ONLY used inside Command 0, where Command 0 gets the Long Address of the slave.     |
+| Long Address/Unique ID        | Longer address, unique to that slave device.                    | Long-frame  | 38 bits    | Not used at all, wasn't invented yet                                                                                                                                      | Used by default                                                                                   |
+| Broadcast Address             | Basically a long address but the bits are zero/placeholder bits | Long-frame  | 38 bits    | Not used at all, wasn't invented yet                                                                                                                                      | Only used in messages that specify a Slave via non-address means (such as by Tag with Command 11) |
 
 Quote from HART Clarifies:
 	"Previous, obsolete revisions of the protocol utilized short frame addresses. In order to maintain backwards compatibility, only Universal Command 0 now supports short frame addressing."
@@ -76,8 +77,3 @@ In modern HART, Master connects to Slave by getting its long address/unique ID.
 Its like how you only use Bing to search for Google.com. 
 Like Google, long-form address is the go-to way to address Slave devices.
 Any other way (short-form address, HART tag) is just a way to get to the long-form address.
-
-### Broadcast Address
-Broadcast address is a long/unique address but the bits are zero. 
-
-Master should ONLY use Broadcast Address if message has another way to specify one single slave.
