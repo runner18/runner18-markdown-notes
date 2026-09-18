@@ -22,6 +22,11 @@ ghci
 
 This opens interactive mode where you can play with Haskall
 
+Load the file (e.g. nameofhsfile.hs) with
+```
+:l nameofhsfile
+```
+
 Some things you can do
 
 ```
@@ -101,3 +106,91 @@ Now you can run:
 - 16.6
 ```
 
+Functions can't begin with Uppercase letters.
+
+### Lists
+```
+- ghci> lostNumbers = [4,8,15,16,23,42]  
+- ghci> lostNumbers  
+- [4,8,15,16,23,42]
+```
+Every element in a list must be the same data type.
+
+Add two lists together:
+```
+- ghci> [1,2,3,4] ++ [9,10,11,12]  
+- [1,2,3,4,9,10,11,12]  
+- ghci> "hello" ++ " " ++ "world"  
+- "hello world"  
+- ghci> ['w','o'] ++ ['o','t']  
+- "woot"
+```
+
+Cons operator: Append a character to a string, or a digit to a numbered-list:
+```
+- ghci> 'A':" SMALL CAT"  
+- "A SMALL CAT"  
+- ghci> 5:[1,2,3,4,5]  
+- [5,1,2,3,4,5]
+```
+
+Another way to write out a list
+```
+1:2:3:[]
+```
+Appends 3, then 2, then 1 to get \[1,2,3]
+
+Retrieve element from list
+```
+- ghci> "Steve Buscemi" !! 6  
+- 'B'  
+- ghci> [9.4,33.2,96.2,11.2,23.25] !! 1  
+- 33.2
+```
+
+Lists can contain lists lol
+```
+- ghci> b = [[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]  
+- ghci> b  
+- [[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]  
+- ghci> b ++ [[1,1,1,1]]  
+- [[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3],[1,1,1,1]]  
+- ghci> [6,6,6]:b  
+- [[6,6,6],[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]  
+- ghci> b !! 2  
+- [1,2,2,3,4]
+```
+Check if each element in a list is ><==
+```
+- ghci> [3,2,1] > [2,1,0]  
+- True
+```
+
+Return certain parts of a list
+```
+- ghci> head [5,4,3,2,1]  
+- 5
+- ghci> tail [5,4,3,2,1]  
+- [4,3,2,1]
+- ghci> last [5,4,3,2,1]  
+- 1
+- ghci> init [5,4,3,2,1]  
+- [5,4,3,2]
+```
+
+```
+- ghci> head []  
+- *** Exception: Prelude.head: empty list
+```
+
+Get list's length
+```
+- ghci> length [5,4,3,2,1]  
+- 5
+```
+
+Reverse a list
+```
+- ghci> reverse [5,4,3,2,1]  
+- [1,2,3,4,5]
+```
