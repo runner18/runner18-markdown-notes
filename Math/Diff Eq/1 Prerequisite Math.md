@@ -31,6 +31,7 @@ $(x+3)$
 $x\neq3$ because bottom of fraction can't be zero
 
 ### Make the bottom of fractions the same
+Notes needed
 
 ### Solve Quadratic Equation
 Example:
@@ -79,6 +80,7 @@ $ln(x)+ln(2)=ln(2x)$
 ## Trigonometry
 If you have a right angled triangle whose long side is a length of one
 That triangle can represent a vector of length one poking out from (0,0)
+Where the short sides of the right triangle are the x and y of the vector
 
 From here you can use trigonometry to translate between (x,y) and (angle, length) 
 
