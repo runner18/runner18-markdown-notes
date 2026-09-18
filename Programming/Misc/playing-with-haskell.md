@@ -160,13 +160,13 @@ Lists can contain lists lol
 - ghci> b !! 2  
 - [1,2,2,3,4]
 ```
-Check if each element in a list is ><==
+Check if every element in a list is ><== to corresponding element in other list
 ```
 - ghci> [3,2,1] > [2,1,0]  
 - True
 ```
 
-Return certain parts of a list
+head, tail, last, init: Return certain parts of a list
 ```
 - ghci> head [5,4,3,2,1]  
 - 5
@@ -183,14 +183,80 @@ Return certain parts of a list
 - *** Exception: Prelude.head: empty list
 ```
 
-Get list's length
+length: Get list's length
 ```
 - ghci> length [5,4,3,2,1]  
 - 5
 ```
 
-Reverse a list
+reverse: Reverse a list
 ```
 - ghci> reverse [5,4,3,2,1]  
 - [1,2,3,4,5]
 ```
+
+take: extract x number of elements from beginning of list
+```
+- ghci> take 3 [5,4,3,2,1]  
+- [5,4,3]  
+- ghci> take 1 [3,9,3]  
+- [3]  
+- ghci> take 5 [1,2]  
+- [1,2]  
+- ghci> take 0 [6,6,6]  
+- []
+```
+
+drop: extract x number of elements from end of list
+```
+- ghci> drop 3 [8,4,2,1,5,6]  
+- [1,5,6]  
+- ghci> drop 0 [1,2,3,4]  
+- [1,2,3,4]  
+- ghci> drop 100 [1,2,3,4]  
+- []
+```
+
+minimum and maximum: returns min and max element from list
+```
+- ghci> minimum [8,4,2,1,5,6]  
+- 1  
+- ghci> maximum [1,9,2,3,4]  
+- 9
+```
+
+sum: returns sum of each element in list
+product: returns product of each element in list
+elem: is this element in the list? true or false?
+```
+- ghci> 4 `elem` [3,4,5,6]  
+- True  
+- ghci> 10 `elem` [3,4,5,6]  
+- False
+```
+
+Cool list shorthand - use a range!!!
+```
+- ghci> [1..20]  
+- [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]  
+- ghci> ['a'..'z']  
+- "abcdefghijklmnopqrstuvwxyz"  
+- ghci> ['K'..'Z']  
+- "KLMNOPQRSTUVWXYZ"
+```
+
+You can also count by twos or by threes in your range shorthand. Neat!
+```
+- ghci> [2,4..20]  
+- [2,4,6,8,10,12,14,16,18,20]  
+- ghci> [3,6..20]  
+- [3,6,9,12,15,18]
+```
+
+Avoid floating point numbers though lol
+```
+- ghci> [0.1, 0.3 .. 1]  
+- [0.1,0.3,0.5,0.7,0.8999999999999999,1.0999999999999999]
+```
+^ yikes
+
