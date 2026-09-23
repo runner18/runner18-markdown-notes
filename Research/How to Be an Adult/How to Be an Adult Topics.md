@@ -1,0 +1,29 @@
+- Financial
+	- How does health insurance work?
+	- How does insurance work?
+	- How do you budget your money?
+- Safety and Emergencies
+	- How to handle common medical emergencies?
+	- How to manage home/apartment security?
+	- How to manage security out on the streets?
+	- How to manage online security?
+	- How to prevent identity theft?
+	- How to identify and ward off scammers?
+- Participating in Government
+	- How to interact with cops?
+	- How to navigate the legal system?
+	- How does the government operate?
+	- How do you vote?
+- Physical Health
+	- Dental health
+	- Skin health
+	- Muscle and bone health
+	- Personal hygienics
+	- Exercise
+	- Diet
+	- Identifying the most common diseases
+- Travel and Transportation
+	- How do you buy and maintain a car?
+	- How do you drive safely?
+	- How do you travel by plane?
+	- Packing for travel
