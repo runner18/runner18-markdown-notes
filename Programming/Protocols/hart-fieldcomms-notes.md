@@ -77,3 +77,11 @@ In modern HART, Master connects to Slave by getting its long address/unique ID.
 Its like how you only use Bing to search for Google.com. 
 Like Google, long-form address is the go-to way to address Slave devices.
 Any other way (short-form address, HART tag) is just a way to get to the long-form address.
+
+### Short Tag vs Long Tag
+Short tag was in earlier versions, only allows for:
+- numbers 0-9
+- upper-case letters
+
+Long tag allows latin-whatever
+

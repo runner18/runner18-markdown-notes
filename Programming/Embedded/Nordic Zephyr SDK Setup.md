@@ -115,3 +115,110 @@ The DeviceTree connects the code to the hardware:
 - What frequency are we running SPI at and which pins? etc.
 
 Each piece of hardware (SPI, I2C, I/O, etc.) is represented as a "Node".
+### Troubleshooting: \[property] undeclared here
+In the Zephyr device tree, you will have devices in the dts  file:
+```
+&spi{
+	compatible = "nordic,nrf-spim";
+	status="okay";
+	pinctrl-0=<&spi_default>;
+	pinctrl-1=<&spi1_sleep>;
+	pinctrl-names="default","sleep"
+	cs-gpios = <&gpio1 5 GPIO_ACTIVE...
+
+	spicdlcdtest:spicdlcd@1{
+		status="okay";
+		compatible="spi-device";
+		reg=<0x1>;
+		spi-max-frequency=<125000>;
+	};
+};
+```
+This device will need to be compatible with a BINDING. This binding file includes all the properties this device needs to have:
+
+spi-device.yaml
+```
+include: [base.yaml, power.yaml]
+
+on-bus:spi
+
+properties:
+	reg:...
+	spi-max-frequency:...
+	duplex:...
+	frame-format:...
+	spi-cpol:...
+	spi-cpha:...
+	spi-hold-cs:...
+```
+
+error output:
+```
+error: 'DT_N_S_soc_S_spi_40004000_S_spicdlcd_1_P_spi_max_frequency' undeclared here (not in a function); did you mean 'DT_N_S_soc_S_spi_40004000_spicdlcd_1_O_reg_IDX_0_EXISTS'?
+
+10998 | #define DT_N_ALIAS_spicdlcdtest DT_N_S_soc_S_spi_40004000_S_spicdlcd_1
+
+```
+
+When building, Zephyr will take the properties from the devicetree/binding and turn them into macros:
+
+```c
+#define DT_N_ALIAS_spicdlcdtest DT_N_S_soc_S_spi_40004000_S_spicdlcd_1
+#define DT_N_INST_0_spi_device    DT_N_S_soc_s_spi_40004000_S_spicdlcd_1
+```
+
+However, in this example, notice that the spi-max-frequency macro is nowhere to be found. This is because Zephyr is stupid and won't generate it.
+
+Luckily, you can create your own custom yaml binding file.
+
+Okay, I fixed the issue, it's becase there needs to be a vendor before spi-device:
+```
+spicdlcdtest:spicdlcd@1{
+	status="okay";
+	compatible="vnd,spi-device";
+	reg=<0x1>
+	spi-max-frequency=<125000>;
+};
+```
+Yes, there's vs code errors, but it will actually build. Discovered from this link:
+[link](https://devzone.nordicsemi.com/f/nordic-q-a/108613/yet-another-zephyr-devicetree-problem-this-time-with-spi-spi-max-frequency-amongst-others)
+
+### Troubleshooting: has x strings,  expected y  strings
+```
+pinctrl-0=<&spi1_default>;
+pinctrl-1=<&spi1_sleep>;
+pinctrl-names="default","sleep";
+```
+Make  sure these all  match  up.
+## I2C
+### Troubleshooting: ord undeclared here
+```
+error: '__device_dts_org_DT_N_NODELABEL_i2c_fram_BUS_ORD' undeclared here (not in a  function)
+```
+
+```
+i2c_fram: fram2s0 {
+	compatible = "ramtron, fram";
+	reg = <0x50>;
+}
+```
+Make sure the node label matches how it's referenced in your code.
+
+## Misc. Troubleshooting
+### Storage class specified for parameter
+Changes are you've forgotten a semi colon in a header file someplace. Make sure each line ends in ;
+
+### Conflicting types for - have
+Make sure your function's parameters are a proper class and  that the  class name is  spelled correctly
+
+### Logging errors
+```
+error: '__log_current_const_data' undeclared (first use in  this  function); did you mean 'log_source_const_data'?
+```
+If you have errors like these, it's probably because you forgot to do this:
+``` c
+LOG_MODULE_REGISTER(Main, LOG_LEVEL_DBG);
+```
+
+### No SOURCES given to target: app
+Make sure that the included modules in cmakelists.txt are spelled correctly

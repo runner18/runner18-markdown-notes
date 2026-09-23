@@ -77,6 +77,19 @@ $y=4e^{2x}$
 **Log Product**
 $ln(x)+ln(2)=ln(2x)$
 
+### K - constant of proportionality
+When things are proportionally related to each other, either directly or inversely.
+
+Direct relationship:
+$y = k * x$
+$number\_of\_inches = 12 * number\_of\_feet$
+K is 12
+
+Inverse relationship:
+$y=\dfrac{k}{x}$
+$frequency\_in\_hz = \dfrac{1000}{number\_of\_milliseconds}$
+K is 1000
+
 ## Trigonometry
 If you have a right angled triangle whose long side is a length of one
 That triangle can represent a vector of length one poking out from (0,0)
@@ -124,7 +137,7 @@ $(fg)'=f'g+fg'$
 
 ### Quotient Rule
 $\dfrac{d}{dx}(\dfrac{f}{g})=\dfrac{f'g-fg'}{g^2}$
-
+Remember it is **minus**, not plus!
 ### Chain Rule
 $f(x)=(3x^2+1)^5$
 
