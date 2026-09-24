@@ -77,18 +77,7 @@ $y=4e^{2x}$
 **Log Product**
 $ln(x)+ln(2)=ln(2x)$
 
-### K - constant of proportionality
-When things are proportionally related to each other, either directly or inversely.
 
-Converse or Direct relationship:
-$y = k * x$
-$number\_of\_inches = 12 * number\_of\_feet$
-K is 12
-
-Inverse or Indirect relationship:
-$y=\dfrac{k}{x}$
-$frequency\_in\_hz = \dfrac{1000}{number\_of\_milliseconds}$
-K is 1000
 
 ## Trigonometry
 If you have a right angled triangle whose long side is a length of one
