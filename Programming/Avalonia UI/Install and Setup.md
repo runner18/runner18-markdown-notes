@@ -4,6 +4,9 @@ Looks like there are two ways to use Avalonia UI:
 
 Thinking the move is to use the VS Code Extension then
 
+Test text
+
+
 
 ## Start with these Commands
 
