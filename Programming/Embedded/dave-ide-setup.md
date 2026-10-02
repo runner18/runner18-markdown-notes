@@ -136,7 +136,7 @@ Thumbs.db
 ```
 
 ## Troubleshooting
-### Launching __ has encountered a problem
+### Error in services launch sequence
 ![](Pasted%20image%2020260910154454.png)
 
 Make sure that DAVE knows where JLink is. (Check the launcing command filepath in details).
@@ -162,3 +162,23 @@ Open the launch file
 Make sure that the PROGRAM_NAME and PROJECT_ATTR match the actual elf file name and project name exactly, respectively.
 
 When you do this, it will show up in the debug options.
+
+### GDB Server Could not listen on TCP Port
+![](Pasted%20image%2020261002144745.png)
+
+```
+GDB --TCP port 2331--> GDB server --USB--> J-Link probe --SWD wires--> board
+```
+
+The issue (probably): there's already a GDB server running on your PC:
+- disconnect any other chips/J-Link devices
+- stop any other debugging processes
+
+More specifically: the TCP port is blocked by something else already using it (probably)
+DAVE IDE starts the GDB server with the same port number(s) every time
+Neither DAVE IDE or GDB server searches for a free TCP port or anything
+
+
+You *could* change the TCP ports that DAVE IDE opens so two GDB servers can run.
+One risk: Second GDB server could connect to the same probe. Uh-oh!
+- Fix for this risk: specify probe's specific Serial Number
