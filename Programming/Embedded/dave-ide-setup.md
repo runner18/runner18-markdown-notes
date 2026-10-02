@@ -179,7 +179,7 @@ DAVE IDE starts the GDB server with the same port number(s) every time
 Neither DAVE IDE or GDB server searches for a free TCP port or anything
 
 
-You *could* change the TCP ports that DAVE IDE opens. This way two GDB servers can run separately.
+You *could* change the TCP ports that DAVE IDE opens to avoid the TCP port conflict all together. 
 - ![](Pasted%20image%2020261002151336.png)
-One risk: Second GDB server could connect to the same probe. Uh-oh!
+One risk: Could create a second GDB server that connects to the same probe as the first. Uh-oh!
 - Fix for this risk: specify probe's specific Serial Number
