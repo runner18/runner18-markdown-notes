@@ -20,6 +20,17 @@ In AvaloniaUI:
 </Style>
 ```
 
+Breaking down ^:pointerover /template/ Border#border
+
+| Piece         | Meaning                                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ^             | "This control this theme is for": the Button. It is only used in a style nested inside a ControlTheme.                                                       |
+| :pointerover  | Colon means a label the control determines itself. (A dot instead would be a label you manage.)<br>Other built-in states include :pressed, :disabled, :focus |
+| (space)       | "Somewhere inside."                                                                                                                                          |
+| /template/    | "Cross into the control's template." Template parts are usually hidden, this steps into it explicitly.<br>The slashes mark it as a keyword.                  |
+| Border#border | "Control type Border with name border." So basically, ControlType#nameYouSetForControl                                                                       |
+|               |                                                                                                                                                              |
+
 ## DataTrigger
 
 In WPF:
@@ -94,3 +105,6 @@ In AvaloniaUI:
 ```
 
 Instead of placing a \<Trigger\> inside of a Template
+
+## Style w x:Key becomes ControlTheme
+## DependencyProperty becomes StyledProperty
