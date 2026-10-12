@@ -49,6 +49,23 @@ See updates and merge with local files:
 git pull origin/main
 ```
 
+## Ignoring Files
+Git only tracks files, not folders. Git only knows about folders from the tracked files inside of them.
+
+You can tell Git to NOT keep track of certain files
+- create a .gitignore file, and type in rules for which files you want to ignore
+- you can filter by file type, or all files in a specific folder
+- this prevents re-creatable build files from all being tracked for no reason 
+- this can lead to untracked useless files sticking around
+
+### Clean ignored files
+Ignoring useless files is good, but it can lead to them sticking around
+Delete ignored files with:
+```
+git clean -ndx    # preview: list what would be deleted
+git clean -fdX    # actually delete
+```
+
 ## Troubleshooting
 
 ### refusing to merge unrelated histories
