@@ -204,6 +204,32 @@ i2c_fram: fram2s0 {
 ```
 Make sure the node label matches how it's referenced in your code.
 
+## Logging
+```LOG_ERR``` for critical issues
+```LOG_WRN``` for warnings
+```LOG_INF``` for general information
+```LOG_DBG``` for debugging information
+
+```cs
+int result = some_function();
+if(result < 0){
+	LOG_ERR("Error in some_function : %d", result);
+}
+else{
+	LOG_DBG("some_function executed successfully with result: %d",result);
+}
+```
+### Adding custom logging for each file
+![454](Pasted%20image%2020261007154819.png)![401](Pasted%20image%2020261007154824.png)
+
+For c file:
+``` c
+// at the top of the file...
+#include<zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(spi_abp2, CONFIG_SPI_ABP2_LOG_LEVEL);
+```
+
 ## Misc. Troubleshooting
 ### Storage class specified for parameter
 Changes are you've forgotten a semi colon in a header file someplace. Make sure each line ends in ;
