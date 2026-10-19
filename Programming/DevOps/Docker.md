@@ -12,3 +12,11 @@ Cons of running software through Docker:
 - More storage: installing the OS, all the libraries, etc.
 
 You'll usually see Docker used for software that isn't too CPU/GPU intensive, and software that will be used by developers and tech savvy people.
+
+### Docker Desktop
+If you are:
+- using windows
+- want to run a container in Windows Subsystem for Linux (WSL)
+
+### Docker and Visual Studio
+If you use a DevContainer with Visual Studio, make sure you have the (Workspace) and the DevContainer 
