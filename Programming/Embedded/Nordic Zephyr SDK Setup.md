@@ -190,6 +190,17 @@ pinctrl-1=<&spi1_sleep>;
 pinctrl-names="default","sleep";
 ```
 Make  sure these all  match  up.
+## SPI
+
+
+## UART
+
+## GPIO
+
+## ADC
+
+## DAC
+
 ## I2C
 ### Troubleshooting: ord undeclared here
 ```
