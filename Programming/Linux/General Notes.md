@@ -39,3 +39,10 @@ chmod 600 ~/.ssh/id_rsa
 ls -l ~/.ssh/id_rsa
 
 ```
+### Open Dev Container in WSL
+In VS Code, install:
+1. Dev Container extension
+2. WSL extension
+
+Click on VS Code workspace file - VS Code should recommend opening it in WSL
+Ctrl + Shift + P, open Dev Container, then select workspace file
