@@ -40,12 +40,3 @@ ls -l ~/.ssh/id_rsa
 
 ```
 ### Open Dev Container in WSL
-In VS Code, install:
-1. Dev Container extension
-2. WSL extension
-
-Click on VS Code workspace file - VS Code should recommend opening it in WSL
-Install Docker Desktop on windows (you need it to run a Dev Container)
-Enable WSL integration from Docker Desktop for Windows
-In VS Code, Ctrl + Shift + P, open Dev Container, then select workspace file
-Will take some time to download Dev Container
