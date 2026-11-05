@@ -1,10 +1,11 @@
-How to have a VS Code workspace inside a DevContainer, all inside WSL
+Have a VS Code workspace inside a Dev Container, all inside WSL
 - WSL
-	- DevContainer
+	- Dev Container
 		- VS Code workspace
 
 Install
-1. VS Code Extensions:
+1. VS Code
+2. VS Code Extensions:
 	1. Dev Container
 	2. WSL
 2. Docker Desktop
