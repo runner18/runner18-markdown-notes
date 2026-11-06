@@ -190,6 +190,17 @@ pinctrl-1=<&spi1_sleep>;
 pinctrl-names="default","sleep";
 ```
 Make  sure these all  match  up.
+## SPI
+
+
+## UART
+
+## GPIO
+
+## ADC
+
+## DAC
+
 ## I2C
 ### Troubleshooting: ord undeclared here
 ```
@@ -229,7 +240,31 @@ For c file:
 
 LOG_MODULE_REGISTER(spi_abp2, CONFIG_SPI_ABP2_LOG_LEVEL);
 ```
+## Setting Up Build Config
 
+Set the filepath where the boards are in the code-workspace file (assuming you are using vs code)
+```json
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": ".."
+        }
+    ],
+    "settings": {
+        "nrf-connect.applications": [
+            "${workspaceFolder}"
+        ],
+        "nrf-connect.boardRoots": [
+            "${workspaceFolder}/boards"
+        ]
+    }
+}
+```
+
+Then when editing the Build Configuration, made sure the proper Board Target is selected.
 ## Misc. Troubleshooting
 ### Storage class specified for parameter
 Changes are you've forgotten a semi colon in a header file someplace. Make sure each line ends in ;
